@@ -7,7 +7,7 @@ services:
     depends_on:
       - postgres
     environment:
-      - PORT=8080
+      - PORT=4000
   postgres:
     build: ./database
     ports:

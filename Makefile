@@ -6,10 +6,12 @@ build-db:
 build-node:
 	docker build . -t node
 
-
 # запуск контейнера - docker run "container-name"
 run-node:
-	docker run node
+	docker run -p 4000:4000 node
 
 run-db:
 	docker run database
+
+compose-build:
+	docker-compose build

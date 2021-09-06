@@ -6,7 +6,7 @@ app.use('/', (_req, res) => {
   res.send('Service is running!');
 });
 
-const PORT = 4000;
+const PORT = process.env.PORT;
 
 app.listen(PORT, async () => {
   console.log(`App is running on http://localhost:${PORT}`);
