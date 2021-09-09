@@ -3,15 +3,21 @@
 build-db:
 	docker build ./database -t database
 
-build-node:
-	docker build . -t node
+node-b:
+	docker build . -t my_node
 
 # запуск контейнера - docker run "container-name"
-run-node:
-	docker run -p 4000:4000 node
+node-r:
+	docker run -p 4000:4000 my_node
 
 run-db:
 	docker run database
 
-compose-build:
+build:
 	docker-compose build
+
+start:
+	docker-compose up
+
+stop:
+	docker-compose down

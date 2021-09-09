@@ -4,15 +4,30 @@ services:
     build: .
     ports:
       - ${PORT}:${PORT}
+    command: npm run dev
+    networks:
+      - my-net
     depends_on:
       - postgres
     environment:
       - PORT=4000
+    volumes:
+      - ./src:/usr/app/src
+    restart: on-failure
   postgres:
     build: ./database
+    networks:
+      - my-net
     ports:
       - ${POSTGRES_PORT}:${POSTGRES_PORT}
+    volumes:
+      - ./pgdata:/home/gorushkin/Webdev/pgdata
     environment:
-      POSTGRESS_USER: ${POSTGRESS_USER}
-      POSTGRESS_PASSWORD: ${POSTGRESS_PASSWORD}
-      POSTGRESS_DB: ${POSTGRESS_DB}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_PORT: ${POSTGRES_PORT}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_DB: ${POSTGRES_DB}
+      PGDATA: ${PGDATA}
+networks:
+  my-net:
+    driver: bridge
