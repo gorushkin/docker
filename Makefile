@@ -13,7 +13,7 @@ node-r:
 # запуск контейнера с именем node_container с подключенными папками
 # Run is a combination of create and start. It creates the container and starts it.
 node-create:
-	docker create --name node_container2 -p 4000:4000 -v "$$(pwd)"/src/:/usr/app/src/ node
+	docker create --name node_container -p 4000:4000 -v "$$(pwd)"/src/:/usr/app/src/ node
 
 # Start will start any stopped containers. This includes freshly created containers.
 # Запускает контенер с выводом в терминал
