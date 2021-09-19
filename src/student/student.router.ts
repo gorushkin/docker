@@ -33,6 +33,7 @@ router
   .patch(async (req, res) => {
     const { id } = <{ id: string }>req.params;
     const result = await studentService.updateStudent(id, req.body as StudentDTO);
+    console.log('result: ', result);
     if (result === 'NOT_FOUND') {
       return res.status(NOT_FOUND).send({ message: 'student not found! ' });
     }

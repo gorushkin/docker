@@ -2,7 +2,14 @@ import { IStudent, StudentDTO } from '../common/types';
 import { Student } from './student.model';
 
 class STUDENTS_DB {
-  _db: IStudent[] = [];
+  _db: IStudent[] = [
+    {
+      id: '32570ee4-a47e-4745-affb-789523faefe2',
+      first_name: 'Ivan',
+      last_name: 'Petrov',
+      age: 23,
+    },
+  ];
 
   findMany(): IStudent[] {
     return this._db;
@@ -30,6 +37,8 @@ class STUDENTS_DB {
     const student = this.findOne(id);
     if (student !== 'NOT_FOUND') {
       const updatedStudent = { ...student, ...dto };
+      const updatedDB = this._db.map((item) => (item.id !== id ? item : updatedStudent));
+      this._db = updatedDB;
       return updatedStudent;
     }
     return 'NOT_FOUND';

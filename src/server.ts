@@ -1,6 +1,7 @@
 import express, { Application } from 'express';
 import cors from 'cors';
 import { router } from './student/student.router';
+import { TryDBConnect } from './helpers/db';
 const app: Application = express();
 
 app.use(cors());
@@ -18,6 +19,8 @@ app.use('/students', router);
 
 const PORT = 4000;
 
-app.listen(PORT, () => {
-  console.log(`app is running on port ${PORT}`);
+TryDBConnect(() => {
+  app.listen(PORT, () => {
+    console.log(`app is running on port ${PORT}`);
+  });
 });
